@@ -904,12 +904,6 @@ CUresult CUDAAPI cuStreamAddCallback(CUstream hStream, CUstreamCallback callback
   return func_ptr(hStream, callback, userData, flags);
 }
 
-CUresult CUDAAPI cuStreamBeginCapture(CUstream hStream) {
-  using FuncPtr = CUresult (CUDAAPI *)(CUstream);
-  static auto func_ptr = LoadSymbol<FuncPtr>("cuStreamBeginCapture");
-  if (!func_ptr) return GetSymbolNotFoundError();
-  return func_ptr(hStream);
-}
 
 CUresult CUDAAPI cuStreamEndCapture(CUstream hStream, CUgraph *phGraph) {
   using FuncPtr = CUresult (CUDAAPI *)(CUstream, CUgraph *);
@@ -1238,12 +1232,6 @@ CUresult CUDAAPI cuGraphCreate(CUgraph *phGraph, unsigned int flags) {
   return func_ptr(phGraph, flags);
 }
 
-CUresult CUDAAPI cuGraphAddKernelNode(CUgraphNode *phGraphNode, CUgraph hGraph, CUgraphNode *dependencies, size_t numDependencies, const CUDA_KERNEL_NODE_PARAMS *nodeParams) {
-  using FuncPtr = CUresult (CUDAAPI *)(CUgraphNode *, CUgraph, CUgraphNode *, size_t, const CUDA_KERNEL_NODE_PARAMS *);
-  static auto func_ptr = LoadSymbol<FuncPtr>("cuGraphAddKernelNode");
-  if (!func_ptr) return GetSymbolNotFoundError();
-  return func_ptr(phGraphNode, hGraph, dependencies, numDependencies, nodeParams);
-}
 
 CUresult CUDAAPI cuGraphKernelNodeGetParams(CUgraphNode hNode, CUDA_KERNEL_NODE_PARAMS *nodeParams) {
   using FuncPtr = CUresult (CUDAAPI *)(CUgraphNode, CUDA_KERNEL_NODE_PARAMS *);
@@ -1259,12 +1247,6 @@ CUresult CUDAAPI cuGraphKernelNodeSetParams(CUgraphNode hNode, const CUDA_KERNEL
   return func_ptr(hNode, nodeParams);
 }
 
-CUresult CUDAAPI cuGraphAddMemcpyNode(CUgraphNode *phGraphNode, CUgraph hGraph, CUgraphNode *dependencies, size_t numDependencies, const CUDA_MEMCPY3D *copyParams, CUcontext ctx) {
-  using FuncPtr = CUresult (CUDAAPI *)(CUgraphNode *, CUgraph, CUgraphNode *, size_t, const CUDA_MEMCPY3D *, CUcontext);
-  static auto func_ptr = LoadSymbol<FuncPtr>("cuGraphAddMemcpyNode");
-  if (!func_ptr) return GetSymbolNotFoundError();
-  return func_ptr(phGraphNode, hGraph, dependencies, numDependencies, copyParams, ctx);
-}
 
 CUresult CUDAAPI cuGraphMemcpyNodeGetParams(CUgraphNode hNode, CUDA_MEMCPY3D *nodeParams) {
   using FuncPtr = CUresult (CUDAAPI *)(CUgraphNode, CUDA_MEMCPY3D *);
@@ -1280,12 +1262,7 @@ CUresult CUDAAPI cuGraphMemcpyNodeSetParams(CUgraphNode hNode, const CUDA_MEMCPY
   return func_ptr(hNode, nodeParams);
 }
 
-CUresult CUDAAPI cuGraphAddMemsetNode(CUgraphNode *phGraphNode, CUgraph hGraph, CUgraphNode *dependencies, size_t numDependencies, const CUDA_MEMSET_NODE_PARAMS *memsetParams, CUcontext ctx) {
-  using FuncPtr = CUresult (CUDAAPI *)(CUgraphNode *, CUgraph, CUgraphNode *, size_t, const CUDA_MEMSET_NODE_PARAMS *, CUcontext);
-  static auto func_ptr = LoadSymbol<FuncPtr>("cuGraphAddMemsetNode");
-  if (!func_ptr) return GetSymbolNotFoundError();
-  return func_ptr(phGraphNode, hGraph, dependencies, numDependencies, memsetParams, ctx);
-}
+
 
 CUresult CUDAAPI cuGraphMemsetNodeGetParams(CUgraphNode hNode, CUDA_MEMSET_NODE_PARAMS *nodeParams) {
   using FuncPtr = CUresult (CUDAAPI *)(CUgraphNode, CUDA_MEMSET_NODE_PARAMS *);
@@ -1301,12 +1278,6 @@ CUresult CUDAAPI cuGraphMemsetNodeSetParams(CUgraphNode hNode, const CUDA_MEMSET
   return func_ptr(hNode, nodeParams);
 }
 
-CUresult CUDAAPI cuGraphAddHostNode(CUgraphNode *phGraphNode, CUgraph hGraph, CUgraphNode *dependencies, size_t numDependencies, const CUDA_HOST_NODE_PARAMS *nodeParams) {
-  using FuncPtr = CUresult (CUDAAPI *)(CUgraphNode *, CUgraph, CUgraphNode *, size_t, const CUDA_HOST_NODE_PARAMS *);
-  static auto func_ptr = LoadSymbol<FuncPtr>("cuGraphAddHostNode");
-  if (!func_ptr) return GetSymbolNotFoundError();
-  return func_ptr(phGraphNode, hGraph, dependencies, numDependencies, nodeParams);
-}
 
 CUresult CUDAAPI cuGraphHostNodeGetParams(CUgraphNode hNode, CUDA_HOST_NODE_PARAMS *nodeParams) {
   using FuncPtr = CUresult (CUDAAPI *)(CUgraphNode, CUDA_HOST_NODE_PARAMS *);
@@ -1322,12 +1293,6 @@ CUresult CUDAAPI cuGraphHostNodeSetParams(CUgraphNode hNode, const CUDA_HOST_NOD
   return func_ptr(hNode, nodeParams);
 }
 
-CUresult CUDAAPI cuGraphAddChildGraphNode(CUgraphNode *phGraphNode, CUgraph hGraph, CUgraphNode *dependencies, size_t numDependencies, CUgraph childGraph) {
-  using FuncPtr = CUresult (CUDAAPI *)(CUgraphNode *, CUgraph, CUgraphNode *, size_t, CUgraph);
-  static auto func_ptr = LoadSymbol<FuncPtr>("cuGraphAddChildGraphNode");
-  if (!func_ptr) return GetSymbolNotFoundError();
-  return func_ptr(phGraphNode, hGraph, dependencies, numDependencies, childGraph);
-}
 
 CUresult CUDAAPI cuGraphChildGraphNodeGetGraph(CUgraphNode hNode, CUgraph *phGraph) {
   using FuncPtr = CUresult (CUDAAPI *)(CUgraphNode, CUgraph *);
@@ -1336,12 +1301,6 @@ CUresult CUDAAPI cuGraphChildGraphNodeGetGraph(CUgraphNode hNode, CUgraph *phGra
   return func_ptr(hNode, phGraph);
 }
 
-CUresult CUDAAPI cuGraphAddEmptyNode(CUgraphNode *phGraphNode, CUgraph hGraph, CUgraphNode *dependencies, size_t numDependencies) {
-  using FuncPtr = CUresult (CUDAAPI *)(CUgraphNode *, CUgraph, CUgraphNode *, size_t);
-  static auto func_ptr = LoadSymbol<FuncPtr>("cuGraphAddEmptyNode");
-  if (!func_ptr) return GetSymbolNotFoundError();
-  return func_ptr(phGraphNode, hGraph, dependencies, numDependencies);
-}
 
 CUresult CUDAAPI cuGraphClone(CUgraph *phGraphClone, CUgraph originalGraph) {
   using FuncPtr = CUresult (CUDAAPI *)(CUgraph *, CUgraph);
@@ -1399,19 +1358,9 @@ CUresult CUDAAPI cuGraphNodeGetDependentNodes(CUgraphNode hNode, CUgraphNode *de
   return func_ptr(hNode, dependentNodes, numDependentNodes);
 }
 
-CUresult CUDAAPI cuGraphAddDependencies(CUgraph hGraph, CUgraphNode *from, CUgraphNode *to, size_t numDependencies) {
-  using FuncPtr = CUresult (CUDAAPI *)(CUgraph, CUgraphNode *, CUgraphNode *, size_t);
-  static auto func_ptr = LoadSymbol<FuncPtr>("cuGraphAddDependencies");
-  if (!func_ptr) return GetSymbolNotFoundError();
-  return func_ptr(hGraph, from, to, numDependencies);
-}
 
-CUresult CUDAAPI cuGraphRemoveDependencies(CUgraph hGraph, CUgraphNode *from, CUgraphNode *to, size_t numDependencies) {
-  using FuncPtr = CUresult (CUDAAPI *)(CUgraph, CUgraphNode *, CUgraphNode *, size_t);
-  static auto func_ptr = LoadSymbol<FuncPtr>("cuGraphRemoveDependencies");
-  if (!func_ptr) return GetSymbolNotFoundError();
-  return func_ptr(hGraph, from, to, numDependencies);
-}
+
+
 
 CUresult CUDAAPI cuGraphDestroyNode(CUgraphNode hNode) {
   using FuncPtr = CUresult (CUDAAPI *)(CUgraphNode);

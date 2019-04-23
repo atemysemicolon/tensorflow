@@ -40,23 +40,6 @@ load("//third_party/toolchains/preconfig/generate:workspace.bzl",
 
 remote_config_workspace()
 
-# Apple and Swift rules.
-http_archive(
-    name = "build_bazel_rules_apple",
-    sha256 = "73b4980a318d203d3307f850e27e66ec5cc8d223147a3475a6f11597eb6438a5",
-    strip_prefix = "rules_apple-0.13.0",
-    urls = ["https://github.com/bazelbuild/rules_apple/archive/0.13.0.tar.gz"],
-)
-http_file(
-    name = "xctestrunner",
-    executable = 1,
-    urls = ["https://github.com/google/xctestrunner/releases/download/0.2.6/ios_test_runner.par"],
-)
-load("@build_bazel_rules_apple//apple:repositories.bzl", "apple_rules_dependencies")
-apple_rules_dependencies()
-load("@build_bazel_rules_swift//swift:repositories.bzl", "swift_rules_dependencies")
-swift_rules_dependencies()
-
 # We must check the bazel version before trying to parse any other BUILD
 # files, in case the parsing of those build files depends on the bazel
 # version we require here.
